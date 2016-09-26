@@ -1,2 +1,5 @@
 *.xml
 *.log
+*.pyc
+validate_test.py
+config.py

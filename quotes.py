@@ -29,12 +29,16 @@ def quote(decision):
             quote = 'Quote not valid.'
             logfile.logger('error', 'Invalid quote.')
 
-
-        des = r"\b(?=\w)" + decision + r"\b(?!\w)"
-        if re.search(des, quote, re.IGNORECASE):
-            logfile.logger('debug', 'Quote selected to publish.')
-            return quote
-            break
+        if (decision == 'yes'):
+            if re.search(r'\byes\b', quote, re.IGNORECASE) or re.search(r'\baye\b', quote, re.IGNORECASE):
+                logfile.logger('debug', 'Quote selected to publish.')
+                return quote
+                break
+        if (decision == 'no'):
+            if re.search(r'\bno\b', quote, re.IGNORECASE):
+                logfile.logger('debug', 'Quote selected to publish.')
+                return quote
+                break
 
 def author():
     tree = ET.parse('quotes.xml')

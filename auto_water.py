@@ -31,28 +31,18 @@ if __name__ == "__main__":
     logfile.logger('debug', 'Body analized')
     votes = words.findall(body)
 
-    v2ote = votes[10]
-    v1ote = votes[11]
-
-    if (v2ote == 'no' and v1ote == 'no'):
-        quotes.action('yes')
-        logfile.logger('info', 'The decision was "yes"')
+    if (votes[8] == 'yes' and votes[9] == 'no' and votes[10] == 'no' and votes[11] == 'no'):
         f.write('yes')
         f.close()
-    elif (v2ote == 'no' and v1ote == 'yes'):
-        quotes.action('no')
-        logfile.logger('info', 'The decision was "no"')
-        f.write('no')
+        quotes.action('yes')
+        logfile.logger('info', 'The decision was "yes"')
+    elif (votes[8] == 'no' and votes[9] == 'yes' and votes[10] == 'no' and votes[11] == 'no'):
+        f.write('yes')
         f.close()
-    elif (v2ote == 'yes' and v1ote == 'no'):
-        quotes.action('no')
-        logfile.logger('info', 'The decision was "no"')
-        f.write('no')
-        f.close()
-    elif (v2ote == 'yes' and v1ote == 'yes'):
-        quotes.action('no')
-        logfile.logger('info', 'The decision was "no"')
-        f.write('no')
-        f.close()
+        quotes.action('yes')
+        logfile.logger('info', 'The decision was "yes"')
     else:
-        logfile.logger(critical, 'Problem with decisions, try to restart the script!')
+        f.write('no')
+        f.close()
+        quotes.action('no')
+        logifle.logger('info', 'The decision was "no"')

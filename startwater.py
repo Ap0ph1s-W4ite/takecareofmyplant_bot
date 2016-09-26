@@ -33,6 +33,8 @@ if __name__ == "__main__":
             flat_comments = praw.helpers.flatten_tree(submission.comments)
             already_done = set()
             for comment in flat_comments:
+                if not isinstance(comment, praw.objects.Comment):
+                    continue
                 if re.search(r'\bNukeWifeGuy\b', comment.author.name, re.IGNORECASE):
                     commented = 1
                     logging.info(comment.author.name + ' comment found. Nothing to do here...')
